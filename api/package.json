@@ -1,0 +1,32 @@
+{
+  "name": "gros-poulet-api",
+  "version": "1.0.0",
+  "description": "La partie serveur du jeu du gros poulet",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon",
+    "build": "rimraf ./build && tsc",
+    "prod": "npm run build && node build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lugitou/WebSocketGame.git"
+  },
+  "author": "Louis Bellefemine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lugitou/WebSocketGame/issues"
+  },
+  "homepage": "https://github.com/Lugitou/WebSocketGame#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.17",
+    "typescript": "^4.8.3"
+  }
+}
