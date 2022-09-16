@@ -5,6 +5,6 @@ export default class Game {
   constructor(io: any, socket: any) {
     this.io = io;
     this.socket = socket;
-    console.log(`Socket ${socket.id} has connected. io: ${io}`);
+    console.log(`Socket ${socket.id} has connected.`);
   }
 }

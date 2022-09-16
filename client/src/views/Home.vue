@@ -151,7 +151,7 @@ export default defineComponent({
     .homeLogo {
       width: 50%;
       height: 50%;
-      animation: homeLogo 0.2s ease-in forwards;
+      animation: homeLogo 1.5s ease-in forwards;
       position: absolute;
       margin: auto;
     }
@@ -179,7 +179,7 @@ export default defineComponent({
         font-weight: bold;
         opacity: 0;
         animation: openBottom 1s ease-in forwards;
-        animation-delay: 0.2s;
+        animation-delay: 1.5s;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -330,7 +330,7 @@ export default defineComponent({
         gap: 20px;
         opacity: 0;
         animation: openLeft 1s ease-in forwards;
-        animation-delay: 0.2s;
+        animation-delay: 1.5s;
 
         .logo {
           width: 75px;
@@ -347,7 +347,7 @@ export default defineComponent({
         font-weight: bold;
         opacity: 0;
         animation: openTop 1s ease-in forwards;
-        animation-delay: 0.2s;
+        animation-delay: 1.5s;
       }
 
       .signIn {
@@ -359,7 +359,7 @@ export default defineComponent({
         font-weight: bold;
         opacity: 0;
         animation: openRight 1s ease-in forwards;
-        animation-delay: 0.2s;
+        animation-delay: 1.5s;
       }
     }
 
@@ -373,18 +373,15 @@ export default defineComponent({
 @keyframes homeLogo {
   0% {
     opcatity: 0;
-    transform: scale(0.5);
+    transform: scale(0.3);
   }
   50% {
     opacity: 1;
     transform: scale(1);
   }
-  75% {
-    transform: scale(0.9);
-    opacity: 1;
-  }
+
   100% {
-    transform: scale(0);
+    transform: scale(0.3);
     opacity: 0;
   }
 }
