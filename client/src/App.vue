@@ -26,23 +26,23 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
 
-nav {
-  padding: 30px;
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    #app {
+      font-family: Avenir, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      height: 100%;
+      width: 100%;
+      background: url('./assets/background.png') repeat;
     }
   }
 }
