@@ -8,6 +8,8 @@ import cors from 'cors';
 import helmet from 'helmet';
 import http from 'http';
 import Game from './game/Game';
+import Lobby from './lobby/Lobby';
+import NameGenerator from './utils/NameGenerator';
 
 const socketIO = require('socket.io');
 
@@ -52,6 +54,24 @@ server.listen(PORT + 1, () => {
 });
 
 io.on('connection', (socket: any) => {
-  const game: Game = new Game(io, socket);
-  console.log('a user connected');
+  //const game: Game = new Game(io, socket);
+  console.log(`Socket ${socket.id} has connected!`);
+
+  socket.on('roomExist', (room: string, callback: any) => {
+    const rooms = io.sockets.adapter.rooms;
+    callback(rooms.has(room));
+  });
+
+  socket.on('createRoom', (room: string, callback: any) => {
+    const roomName = NameGenerator(6);
+    socket.join(roomName);
+
+    const lobby = new Lobby(io, socket, room);
+    lobby.addPlayer(socket.id);
+    socket.emit('playersList', roomName);
+  });
+});
+
+io.on('disconnect', (socket: any) => {
+  console.log(`Socket ${socket.id} has disconnected.`);
 });
