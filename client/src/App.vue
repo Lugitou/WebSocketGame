@@ -1,11 +1,23 @@
 <template>
-  <router-view />
+  <div class="full">
+    <div class="header">
+      <Logo />
+      <NavBar />
+      <SignIn />
+    </div>
+    <div class="bodyRouter">
+      <RouterView />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import io from 'socket.io-client';
 import { useStore } from './store';
+import Logo from './components/Home/Logo.vue';
+import NavBar from './components/Home/NavBar.vue';
+import SignIn from './components/Home/SignIn.vue';
 
 export default defineComponent({
   name: 'App',
@@ -22,6 +34,7 @@ export default defineComponent({
   mounted() {
     this.initSocket();
   },
+  components: { Logo, NavBar, SignIn },
 });
 </script>
 
@@ -50,62 +63,27 @@ html {
   }
 }
 
-@keyframes homeLogo {
-  0% {
-    opcatity: 0;
-    transform: scale(0.3);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1);
+.full {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .header {
+    font-family: 'Inter';
+    font-size: 140%;
+    color: white;
+    margin-left: 2.5%;
+    width: 95%;
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
   }
 
-  100% {
-    transform: scale(0.3);
-    opacity: 0;
-  }
-}
-
-@keyframes openLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes openTop {
-  0% {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes openRight {
-  0% {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes openBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+  .bodyRouter {
+    width: 100%;
+    height: 80%;
   }
 }
 </style>

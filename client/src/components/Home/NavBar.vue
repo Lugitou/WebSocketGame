@@ -44,8 +44,5 @@ export default defineComponent({
   gap: 50px;
   justify-content: center;
   font-weight: bold;
-  opacity: 0;
-  animation: openTop 1s ease-in forwards;
-  animation-delay: 1.5s;
 }
 </style>

@@ -1,11 +1,12 @@
+<!-- eslint-disable vuejs-accessibility/click-events-have-key-events -->
 <template>
-  <div :class="join ? 'card joinGame' : 'card hostGame'">
+  <div @click="createRoom" :class="join ? 'card joinGame' : 'card hostGame'">
     <h2>{{ title }}</h2>
     <img :alt="alt" :src="require(`../../assets/${path}`)" />
     <div v-if="join" class="wrapperRoom">
       <label for="room">
-        <input type="text" name="room" placeholder="Entrer le code du salon" />
-        <button><img alt="caret" src="../../assets/caret-right.svg" /></button>
+        <input v-model="room" type="text" name="room" placeholder="Entrer le code du salon" />
+        <button @click="goToLobby"><img alt="caret" src="../../assets/caret-right.svg" /></button>
       </label>
     </div>
   </div>
@@ -13,6 +14,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useStore } from '../../store';
 
 export default defineComponent({
   name: 'Card',
@@ -22,27 +24,53 @@ export default defineComponent({
     path: String,
     join: Boolean,
   },
+  data() {
+    return {
+      room: null,
+      store: useStore(),
+    };
+  },
+  methods: {
+    goToLobby() {
+      this.store.state.socket.emit('roomExist', this.room, (response: never) => {
+        if (response === true) {
+          this.$router.push(`/room/${this.room}`);
+        } else {
+          console.log(`La room ${this.room} n'existe pas !`);
+        }
+      });
+    },
+    createRoom() {
+      if (this.$props.join === false) {
+        console.log('create');
+        this.store.state.socket.emit('createRoom', (response: never) => {
+          console.log(response);
+        });
+      }
+    },
+    setPlayerListListener() {
+      this.store.state.socket.on('playersList', (roomName: string) => {
+        this.$router.push(`/room/${roomName}`);
+      });
+    },
+  },
+  mounted() {
+    this.setPlayerListListener();
+  },
 });
 </script>
 
 <style lang="scss" scoped>
 .card {
-  height: 60%;
-  width: 30%;
+  height: 80%;
+  width: 40%;
   border: 8px solid white;
   border-radius: 25px;
   font-weight: bold;
-  opacity: 0;
-  animation: openBottom 1s ease-in forwards;
-  animation-delay: 1.5s;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
-
-  &:hover {
-    box-shadow: rgba(255, 0, 0, 0.3) 0px 19px 38px, rgba(255, 0, 0, 0.22) 0px 15px 12px;
-  }
 
   /*transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
 

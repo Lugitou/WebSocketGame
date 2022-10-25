@@ -1,12 +1,6 @@
 <template>
   <div class="home">
-    <HomeLogo />
     <div class="mainMenu">
-      <div class="header">
-        <Logo />
-        <NavBar />
-        <SignIn />
-      </div>
       <CardsGroup />
     </div>
   </div>
@@ -14,11 +8,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import NavBar from '@/components/Home/NavBar.vue';
 import CardsGroup from '@/components/Home/CardsGroup.vue';
-import SignIn from '@/components/Home/SignIn.vue';
-import HomeLogo from '../components/Home/HomeLogo.vue';
-import Logo from '../components/Home/Logo.vue';
 import { useStore } from '../store';
 
 export default defineComponent({
@@ -36,11 +26,7 @@ export default defineComponent({
     }
   },
   components: {
-    Logo,
-    NavBar,
     CardsGroup,
-    SignIn,
-    HomeLogo,
   },
 });
 </script>
@@ -54,7 +40,7 @@ export default defineComponent({
   font-size: 140%;
   font-weight: 500;
   width: 100%;
-  height: 100%;
+  height: 85%;
   position: relative;
 
   .mainMenu {
@@ -62,14 +48,6 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    .header {
-      color: white;
-      width: 95%;
-      height: 15%;
-      display: flex;
-      justify-content: space-between;
-    }
   }
 }
 </style>

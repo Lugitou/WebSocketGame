@@ -22,9 +22,6 @@ export default defineComponent({
   display: flex;
   align-items: center;
   gap: 20px;
-  opacity: 0;
-  animation: openLeft 1s ease-in forwards;
-  animation-delay: 1.5s;
 
   .logo {
     width: 75px;

@@ -39,8 +39,5 @@ export default defineComponent({
   align-items: center;
   justify-content: flex-end;
   font-weight: bold;
-  opacity: 0;
-  animation: openRight 1s ease-in forwards;
-  animation-delay: 1.5s;
 }
 </style>
